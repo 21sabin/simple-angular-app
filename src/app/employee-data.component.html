@@ -1,0 +1,94 @@
+<table border="1">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Gender</td>
+            <td>Company</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let employee of employees; let i= index;">
+            <td>
+                <input type="number" min="1" [(ngModel)]="employee.id" [disabled]="!employee.isEditable" >
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="employee.name" [disabled]="!employee.isEditable">
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="employee.address" [disabled]="!employee.isEditable">
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="employee.gender" [disabled]="!employee.isEditable">
+            </td>
+            <td>
+                <input type="text" [(ngModel)]="employee.company" [disabled]="!employee.isEditable">
+            </td>
+            <td>
+                <div>
+                    <!-- <button (click)="editEmployee(i)">Edit</button> -->
+                    <button (click)="employee.isEditable=!employee.isEditable"
+                        *ngIf="!employee.isEditable" >
+                        Edit
+                    </button>
+                    <button (click)="employee.isEditable=!employee.isEditable"
+                    *ngIf="employee.isEditable" >
+                        Save
+                    </button>
+                    <button (click)="deleteEmployee(i)">Delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+<br>
+<h1>Add an Employee</h1>
+
+<form>
+    <div>
+        <label>Id</label>
+        <div>
+            <input type="number" class="" name="id"
+            [(ngModel)]="id" required />
+        </div>
+    </div>
+
+	<div>
+		<label>Name</label>
+		<div>
+			<input type="text" class="" name="name"
+            [(ngModel)]="name" required />
+		</div>
+	</div>
+	<div>
+		<label>Address</label>
+		<div>
+			<input type="text" class="" name="address"
+            [(ngModel)]="address" required />
+		</div>
+	</div>
+	<div>
+		<label>Gender</label>
+		<div>
+			<input type="text" class="" name="gender"
+            [(ngModel)]="gender" required />
+		</div>
+    </div>
+    <div>
+        <label>Company</label>
+        <div>
+            <input type="text" class="" name="company"
+            [(ngModel)]="company" required />
+        </div>
+    </div>
+	<div>								
+		<div>
+            <input type="submit" value="Submit" class=""
+               (click)="addRow()" />
+		</div>
+	</div>
+</form>

@@ -1,5 +1,6 @@
-<table border="1">
-    <thead>
+<div class="container">
+<table class="table table-bordered table-bordered table-responsive">
+    <thead class="thead-inverse">
         <tr>
             <td>Id</td>
             <td>Name</td>
@@ -13,7 +14,11 @@
     <tbody>
         <tr *ngFor="let employee of employees; let i= index;">
             <td>
-                <input type="number" min="1" [(ngModel)]="employee.id" [disabled]="!employee.isEditable" >
+                <input 
+                    class=""
+                    type="number" 
+                    min="1" [(ngModel)]="employee.id" 
+                    [disabled]="!employee.isEditable" >
             </td>
             <td>
                 <input type="text" [(ngModel)]="employee.name" [disabled]="!employee.isEditable">
@@ -30,15 +35,23 @@
             <td>
                 <div>
                     <!-- <button (click)="editEmployee(i)">Edit</button> -->
-                    <button (click)="employee.isEditable=!employee.isEditable"
+                    <button 
+                        class="btn btn-warning"
+                        (click)="employee.isEditable=!employee.isEditable"
                         *ngIf="!employee.isEditable" >
                         Edit
                     </button>
-                    <button (click)="employee.isEditable=!employee.isEditable"
-                    *ngIf="employee.isEditable" >
+                    <button 
+                        class="btn btn-warning"
+                        (click)="employee.isEditable=!employee.isEditable"
+                        *ngIf="employee.isEditable" >
                         Save
                     </button>
-                    <button (click)="deleteEmployee(i)">Delete</button>
+                    <button 
+                        class="btn btn-danger"
+                        (click)="deleteEmployee(i)">
+                        Delete
+                    </button>
                 </div>
             </td>
         </tr>
@@ -48,47 +61,60 @@
 <br>
 <h1>Add an Employee</h1>
 
-<form>
-    <div>
+<form class="col-lg-4">
+    <div class="form-group">
         <label>Id</label>
         <div>
-            <input type="number" class="" name="id"
-            [(ngModel)]="id" required />
+            <input 
+                type="number" class="form-control" name="id"
+                [(ngModel)]="id" required />
         </div>
     </div>
 
-	<div>
+	<div class="form-group">
 		<label>Name</label>
 		<div>
-			<input type="text" class="" name="name"
-            [(ngModel)]="name" required />
+            <input 
+                type="text" class="form-control" name="name"
+                [(ngModel)]="name" required />
 		</div>
-	</div>
-	<div>
+    </div>
+    
+	<div class="form-group">
 		<label>Address</label>
 		<div>
-			<input type="text" class="" name="address"
-            [(ngModel)]="address" required />
+            <input 
+                type="text" class="form-control" name="address"
+                [(ngModel)]="address" required />
 		</div>
-	</div>
-	<div>
+    </div>
+    
+	<div class="form-group">
 		<label>Gender</label>
 		<div>
-			<input type="text" class="" name="gender"
-            [(ngModel)]="gender" required />
+            <input 
+                type="text" class="form-control" name="gender"
+                [(ngModel)]="gender" required />
 		</div>
     </div>
-    <div>
+
+    <div class="form-group">
         <label>Company</label>
         <div>
-            <input type="text" class="" name="company"
-            [(ngModel)]="company" required />
+            <input 
+                type="text" class="form-control" name="company"
+                [(ngModel)]="company" required />
         </div>
     </div>
-	<div>								
+	<div class="form-group">								
 		<div>
-            <input type="submit" value="Submit" class=""
-               (click)="addRow()" />
+            <button 
+                class="btn btn-success"
+                (click)="addRow()">
+                Add Employee
+            </button>
 		</div>
 	</div>
 </form>
+
+</div>

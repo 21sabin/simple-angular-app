@@ -1,15 +1,31 @@
 import { Component } from '@angular/core';
 import { Employee } from './employee';
-import { NgForm } from '@angular/forms';
+//import { NgForm } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { promise } from 'selenium-webdriver';
 
 
 @Component({
     selector: 'employee-data',
     templateUrl: './employee-data.component.html',
+    styles: [``]
 })
 
 export class EmployeeDataComponent {
+
+    userForm: FormGroup;
+
+    constructor(private formBuilder: FormBuilder) {
+        
+        this.userForm = this.formBuilder.group({
+            'ModalId': ['', Validators.required],
+            'ModalName': ['', Validators.required],
+            'ModalAddress': ['', Validators.required],
+            'ModalCompany': ['', Validators.required]
+            
+        })
+
+    }
 
     id: number;
     name: string;

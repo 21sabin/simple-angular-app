@@ -18,10 +18,10 @@ export class EmployeeDataComponent {
     constructor(private formBuilder: FormBuilder) {
         
         this.userForm = this.formBuilder.group({
-            'ModalId': ['', Validators.required],
-            'ModalName': ['', Validators.required],
-            'ModalAddress': ['', Validators.required],
-            'ModalCompany': ['', Validators.required]
+            'ModalId': [null, Validators.required],
+            'ModalName': [null, Validators.required],
+            'ModalAddress': [null, Validators.required],
+            'ModalCompany': [null, Validators.required]
             
         })
 
@@ -72,16 +72,28 @@ export class EmployeeDataComponent {
     ];
 
     addRow() {
+        
+
+        if(this.userForm.valid){
+            console.log('inside valid')
+            this.id =  this.userForm.controls['ModalId'].value;
+            this.name =  this.userForm.controls['ModalName'].value;
+            this.address =  this.userForm.controls['ModalAddress'].value;
+            this.company =  this.userForm.controls['ModalCompany'].value;
+    
+            this.employees.push({
+                id: this.id,
+                name: this.name,
+                address: this.address,
+                gender: this.gender,
+                company: this.company,
+                isEditable: this.isEditable
+            });
+        }else{
         //prompt("Checking the control!");
-        this.employees.push({
-            id: this.id,
-            name: this.name,
-            address: this.address,
-            gender: this.gender,
-            company: this.company,
-            isEditable: this.isEditable
-            
-        });
+        console.log('inside invalid')
+       
+    }
     }
 
     deleteEmployee(index) {
@@ -89,7 +101,7 @@ export class EmployeeDataComponent {
         this.employees.splice(index, 1);
     }
 
-    editEmployee(index) {
+    editEmployee(index) {      
 
        debugger;
        this.employees[index].isEditable = true;

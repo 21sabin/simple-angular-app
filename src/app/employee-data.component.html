@@ -12,12 +12,14 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let employee of employees; let i= index;">
+            <tr *ngFor="let employee of employees; let i = index;">
                 <td>
+                    
                     <input 
                         class="form-control"
                         type="number" 
-                        min="1" [(ngModel)]="employee.id" 
+                        min="1" 
+                        [(ngModel)]="employee.id"    
                         [disabled]="!employee.isEditable">
                 </td>
                 <td>
@@ -78,7 +80,7 @@
         </tbody>
     </table>
 
-<!-- Trigger the modal with a button -->
+    <!-- Trigger the modal with a button -->
     <button 
         type="button" 
         class="btn btn-success btn-md" 
@@ -100,15 +102,18 @@
 
                 <!-- Modal Body -->
                 <div class="modal-body">
-                    <form  [formGroup]="userForm" (ngSubmit)="addRow()">
+                    <form  [formGroup]="userForm" (ngSubmit)="addRow(userForm.value)">
                         <div class="form-group">
                             <label>Id</label>
                             <div>
+                                <!-- [(ngModel)]="id" -->
                                 <input 
                                     type="number" class="form-control" 
                                     formControlName="ModalId" name="id"
                                     [(ngModel)]="id"
-                                    min="1" required />
+                
+                                    min="1" required 
+                                    />
                                 <div 
                                     class="alert alert-danger"
                                     *ngIf="!userForm.controls['ModalId'].valid && userForm.controls['ModalId'].touched">
@@ -120,6 +125,7 @@
                         <div class="form-group">
                             <label>Name</label>
                                 <div>
+                                    <!-- [(ngModel)]="name" -->
                                     <input 
                                         type="text" class="form-control"
                                         formControlName="ModalName" name="name"
@@ -135,6 +141,7 @@
                         <div class="form-group">
                             <label>Address</label>
                             <div>
+                                <!-- [(ngModel)]="address" -->
                                 <input 
                                     type="text" class="form-control" 
                                     formControlName="ModalAddress" name="address"
@@ -167,6 +174,7 @@
                         <div class="form-group">
                             <label>Company</label>
                             <div>
+                                <!-- [(ngModel)]="company" -->
                                 <input 
                                     type="text" class="form-control" 
                                     formControlName="ModalCompany" name="company"
@@ -183,7 +191,8 @@
                             <input 
                                 type="submit" 
                                 value="Submit"
-                                class="btn btn-success">
+                                class="btn btn-success"
+                                [disabled]="!userForm.valid" >
                         </div>
                     </form>
                 </div>

@@ -55,7 +55,7 @@ export class EmployeeDataComponent {
         },
         {
             id: 3,
-            name: 'Prashansha',
+            name: 'Prashant',
             address: 'Tripureshwor',
             gender: 'Female',
             company: 'MNO Inc',
